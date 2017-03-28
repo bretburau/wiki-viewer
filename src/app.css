@@ -1,5 +1,29 @@
 body {
-	background-color: orange;
-	color: blue;
+	background-color: #57a3c1;
+	color: purple;
+	text-align: center;
 
+}
+
+form {
+	margin: 10% auto 0;
+	border: black 1px solid;
+	width: 50%;
+	padding: 1rem;
+}
+
+.container {
+
+}
+
+ul {
+	list-style-type: none;
+	display: flex;
+	flex-flow: column wrap;	
+	width: 80%;
+	margin: 3rem auto;
+}
+
+.searchmatch {
+	color: red;
 }
