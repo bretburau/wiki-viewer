@@ -1,13 +1,30 @@
 const css = require('./app.css'); //from external css module of webpack
 
+var searchButton = document.getElementById("searchButton");
+var resetButton = document.getElementById("reset");
+var form = document.getElementById("input_form");
+
+searchButton.onclick = search;
+resetButton.onclick = removeClass //reset.classList.remove("reset-fadein");
+
+function removeClass(className) {
+	reset.classList.remove("reset-fadein");
+	form.classList.remove("move");
+}
+
 
 
 //var url = "https://en.wikipedia.org/w/api.php?action=query&list=search&format=jsonp&srsearch=steve+Gadd&origin=*";
 
 function search(e) {
 	e.preventDefault(); //stop page from reloading
-
 	var searchText = $("#search").val(); //grab text from input field
+	if(searchText == "") { 	
+		alert("Please enter something to lookup!"); //assure field isn't empty  
+		return;
+	};
+	form.className = "move";
+	resetButton.className = "reset-fadein";
 	
 
 	$.ajax({
@@ -27,12 +44,12 @@ function search(e) {
 	 			newContent += newEntry; //add listing to total content
 	 		}; //end success
 	 		document.getElementById("list").innerHTML = newContent; //add all content to the ul
-	 		document.getElementById("input_form").style.display = "none"; //hide search field
+	 		//document.getElementById("input_form").style.display = "none"; //hide search field
 	 	}
 	}); // end .ajax
 	 	
 } //end search function
 
 
-document.getElementById("searchButton").onclick = search;
+
 

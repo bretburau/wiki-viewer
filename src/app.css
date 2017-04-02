@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;;
+}
+
 body {
 	background-color: #57a3c1;
 	color: purple;
@@ -10,10 +14,7 @@ form {
 	border: black 1px solid;
 	width: 50%;
 	padding: 1rem;
-}
-
-.container {
-
+	transition: all 0.2s ease;		/* new stuff */
 }
 
 ul {
@@ -21,9 +22,53 @@ ul {
 	display: flex;
 	flex-flow: column wrap;	
 	width: 80%;
-	margin: 3rem auto;
+	margin: 0 auto;
+	padding: 0;
 }
 
 .searchmatch {
 	color: red;
+}
+
+.move {
+/*	animation: moveDiv .2s ease-out forwards;
+*/
+	transform: scaleX(0) translateY(-100px);
+}
+
+#reset {
+	opacity: 0;
+	position: absolute;
+	top: 95px;
+	text-align: center;
+	transition: all .2s ease;
+	/*width: 0;*/
+	/*transform: translateX(-75px);
+	transform-origin: 50% 50%;*/
+}
+
+.reset-fadein {
+	animation: fadein .2s ease-out forwards;
+	opacity: 1;
+	width: 100px;
+}
+
+
+/**********
+KEYFRAMES
+**********/
+
+@keyframes moveDiv {
+	from { transform: scaleX(1) translateY(0); }
+	to { transform:  scaleX(0) translateY(-100px);}
+}
+
+@keyframes fadein {
+    from { opacity: 0; width: 0;}
+    to { opacity: 1; width: 100px;}
+}
+
+@keyframes moveDivBack {
+	from { transform:  scaleX(0) translateY(-100px); }
+	to { transform: scaleX(1) translateY(0);}
 }

@@ -8,15 +8,17 @@
 	<link rel="stylesheet" type="text/css" href="normalize.css" />
  </head>
  <body> 
- 	
- 	<form id="input_form">
- 		<input id="search" type="text" placeholder="Search Wikipedia..." required>
- 		<button id="searchButton" type="submit">Search</button>
- 	</form>
- 	<div class="container">
- 		<ul id="list">
- 			
- 		</ul>
+ 	<div class="wrapper">
+	 	<form id="input_form">
+	 		<input id="search" type="text" placeholder="Search Wikipedia..." autocomplete="off" required autofocus>
+	 		<button  id="searchButton" type="submit">Search</button>
+	 	</form>
+	 	<button id="reset">Reset</button>
+	 	<div class="container">
+	 		<ul id="list">
+	 			
+	 		</ul>
+	 	</div>
  	</div>
  	
  	<script
