@@ -1,20 +1,20 @@
 const css = require('./app.css'); //from external css module of webpack
 
 var searchButton = document.getElementById("searchButton");
-var resetButton = document.getElementById("reset");
+//var resetButton = document.getElementById("reset");
 var form = document.getElementById("input_form");
+var h1 = document.getElementById("header");
 
 searchButton.onclick = search;
-resetButton.onclick = removeClass //reset.classList.remove("reset-fadein");
+//resetButton.onclick = removeClass //reset.classList.remove("reset-fadein");
 
 function removeClass(className) {
-	reset.classList.remove("reset-fadein");
+	//reset.classList.remove("reset-fadein");
 	form.classList.remove("move");
 }
 
 
 
-//var url = "https://en.wikipedia.org/w/api.php?action=query&list=search&format=jsonp&srsearch=steve+Gadd&origin=*";
 
 function search(e) {
 	e.preventDefault(); //stop page from reloading
@@ -23,8 +23,9 @@ function search(e) {
 		alert("Please enter something to lookup!"); //assure field isn't empty  
 		return;
 	};
-	form.className = "move";
-	resetButton.className = "reset-fadein";
+	form.className = "move"; //animate form up and fade header out
+	h1.className = "fadeout";
+	
 	
 
 	$.ajax({
@@ -39,8 +40,11 @@ function search(e) {
 	 	success: function(json) {
 	 		var newContent = "";	 		
 	 		for(var i=0; i<9; i++) {
-	 			var newEntry = "<li class='listing'><h2>" +json.query.search[i].title + "</h2><br>";  //grab title for this listing
- 				newEntry += "<p>" + json.query.search[i].snippet + "</li>"; //grab snippet for this listing
+	 			var url = "https://en.wikipedia.org/wiki/" + encodeURIComponent(json.query.search[i].title); //encode title and build link for item
+
+	 			var newEntry = "<a href=" + url + " target='_blank'>";
+	 			newEntry +="<li class='listing'><h2>" +json.query.search[i].title + "</h2><br>";  //grab title for this listing
+ 				newEntry += "<p>" + json.query.search[i].snippet + "</li></a>"; //grab snippet for this listing
 	 			newContent += newEntry; //add listing to total content
 	 		}; //end success
 	 		document.getElementById("list").innerHTML = newContent; //add all content to the ul
