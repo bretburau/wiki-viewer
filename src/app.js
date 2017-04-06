@@ -42,14 +42,21 @@ function search(e) {
 	 		for(var i=0; i<9; i++) {
 	 			var url = "https://en.wikipedia.org/wiki/" + encodeURIComponent(json.query.search[i].title); //encode title and build link for item
 
-	 			var newEntry = "<a href=" + url + " target='_blank'>";
-	 			newEntry +="<li class='listing'><h2>" +json.query.search[i].title + "</h2><br>";  //grab title for this listing
- 				newEntry += "<p>" + json.query.search[i].snippet + "</li></a>"; //grab snippet for this listing
+	 			var newEntry = "<li class='listing'><a href=" + url + " target='_blank'>";
+	 			newEntry += "<h2>" +json.query.search[i].title + "</h2><br>";
+	 			newEntry += "<p>" + json.query.search[i].snippet + "</a></li>";
+
+	 			// var newEntry = "<a href=" + url + " target='_blank'>";
+	 			// newEntry +="<li class='listing'><h2>" +json.query.search[i].title + "</h2><br>";  //grab title for this listing
+ 				// newEntry += "<p>" + json.query.search[i].snippet + "</li></a>"; //grab snippet for this listing
 	 			newContent += newEntry; //add listing to total content
 	 		}; //end success
 	 		document.getElementById("list").innerHTML = newContent; //add all content to the ul
+	 		$("ul").addClass("fadein");
+	 		//document.getElementById("list").className = "slide-in";
 	 		//document.getElementById("input_form").style.display = "none"; //hide search field
-	 	}
+
+	 	} // end callback
 	}); // end .ajax
 	 	
 } //end search function

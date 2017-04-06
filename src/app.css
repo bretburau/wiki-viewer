@@ -7,14 +7,11 @@ body {
 	text-align: center;
 	color: #222;
 	font-family: 'Open Sans', sans-serif;
-	
+	overflow: hidden;
 
 }
 
-a {
-	text-decoration: none;
-	color: inherit;
-}
+
 
 h1 {
 	font-size: 4rem;
@@ -88,6 +85,8 @@ ul {
 	margin: 0 auto;
 	padding: 0;
 	transform: translateY(-160px);
+	
+	transition: opacity .3s ease-in;
 }
 
 li {
@@ -99,10 +98,19 @@ li {
 	transition: .4s ease;
 	border-radius: 10px;
 	box-shadow: 3px 2px 10px #333;
+/*	transform: translateX(2000px);
+*/	transition: all .5s ease;
+	
 }
+
 
 li:nth-child(odd) {
 	background-color: #FF866D;
+}
+
+ a, a:visited, a:hover, a:active {
+	text-decoration: none;
+	color: inherit;
 }
 
 li:hover {
@@ -127,3 +135,17 @@ li h2 {
 	opacity: 0;
 }
 
+.fadein {
+	animation: come-in .3s ease-in;
+}
+
+
+@keyframes "come-in" {
+	from {
+		opacity: 0;
+
+	}
+	to {
+		opacity: 100;
+	}
+}
