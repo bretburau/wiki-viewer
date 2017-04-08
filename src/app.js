@@ -42,7 +42,7 @@ function search(e) {
 	 		for(var i=0; i<9; i++) {
 	 			var url = "https://en.wikipedia.org/wiki/" + encodeURIComponent(json.query.search[i].title); //encode title and build link for item
 
-	 			var newEntry = "<li class='listing'><a href=" + url + " target='_blank'>";
+	 			var newEntry = "<li id='listItem" + i + "'><a href=" + url + " target='_blank'>";
 	 			newEntry += "<h2>" +json.query.search[i].title + "</h2><br>";
 	 			newEntry += "<p>" + json.query.search[i].snippet + "</a></li>";
 
@@ -52,10 +52,15 @@ function search(e) {
 	 			newContent += newEntry; //add listing to total content
 	 		}; //end success
 	 		document.getElementById("list").innerHTML = newContent; //add all content to the ul
-	 		$("ul").addClass("fadein");
-	 		//document.getElementById("list").className = "slide-in";
-	 		//document.getElementById("input_form").style.display = "none"; //hide search field
-
+ 			for(var i=0; i<document.getElementById("list").childNodes.length ; i++) {
+ 				var currentLi = "listItem" + i;
+ 				console.log(currentLi);
+ 				setTimeout(function() {
+	 				document.getElementById(currentLi).className = "fadein";
+	 			}, 200);
+ 			}
+ 			
+	 		
 	 	} // end callback
 	}); // end .ajax
 	 	
