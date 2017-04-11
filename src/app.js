@@ -1,15 +1,11 @@
 const css = require('./app.css'); //from external css module of webpack
 
 var searchButton = document.getElementById("searchButton");
-//var resetButton = document.getElementById("reset");
 var form = document.getElementById("input_form");
 var h1 = document.getElementById("header");
 
 searchButton.onclick = search;
-//resetButton.onclick = removeClass //reset.classList.remove("reset-fadein");
-
 function removeClass(className) {
-	//reset.classList.remove("reset-fadein");
 	form.classList.remove("move");
 }
 
@@ -42,29 +38,36 @@ function search(e) {
 	 		for(var i=0; i<9; i++) {
 	 			var url = "https://en.wikipedia.org/wiki/" + encodeURIComponent(json.query.search[i].title); //encode title and build link for item
 
-	 			var newEntry = "<li id='listItem" + i + "'><a href=" + url + " target='_blank'>";
+	 			var newEntry = "<a href=" + url + " target='_blank'><li id='listItem" + i + "'>";
 	 			newEntry += "<h2>" +json.query.search[i].title + "</h2><br>";
-	 			newEntry += "<p>" + json.query.search[i].snippet + "</a></li>";
+	 			newEntry += "<p>" + json.query.search[i].snippet + "</li></a>";
 
-	 			// var newEntry = "<a href=" + url + " target='_blank'>";
-	 			// newEntry +="<li class='listing'><h2>" +json.query.search[i].title + "</h2><br>";  //grab title for this listing
- 				// newEntry += "<p>" + json.query.search[i].snippet + "</li></a>"; //grab snippet for this listing
+	 			
 	 			newContent += newEntry; //add listing to total content
 	 		}; //end success
 	 		document.getElementById("list").innerHTML = newContent; //add all content to the ul
- 			for(var i=0; i<document.getElementById("list").childNodes.length ; i++) {
- 				var currentLi = "listItem" + i;
- 				console.log(currentLi);
- 				setTimeout(function() {
-	 				document.getElementById(currentLi).className = "fadein";
-	 			}, 200);
- 			}
+	 		var y=0;
+ 			function animateLoop () {           //  create a loop function
+  			 	setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+   					var currentLi = "listItem" + y;
+			      	document.getElementById(currentLi).className = "fadein";				           
+			      	y++;                     //  increment the counter
+			      	if (y < document.getElementById("list").childNodes.length) {            //  if the counter < 10, call the loop function
+			        	animateLoop();             //  ..  again which will trigger another 
+			      	}                        
+			   	}, 50)
+			}
+			animateLoop();
+ 			
  			
 	 		
 	 	} // end callback
 	}); // end .ajax
 	 	
 } //end search function
+
+
+
 
 
 

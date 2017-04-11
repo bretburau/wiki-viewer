@@ -81,6 +81,10 @@ button:active {
 	background-color: #4d8ea5;
 }
 
+#randomPage {
+	align-self: flex-end;
+}
+
 ul {
 	list-style-type: none;
 	display: flex;
@@ -89,7 +93,7 @@ ul {
 	margin: 0 auto;
 	padding: 0;
 	transform: translateY(-160px);
-	
+	perspective: 700px;
 	transition: opacity .3s ease-in;
 }
 
@@ -101,20 +105,19 @@ li {
 	background-color: #FFAA4D;
 	border-radius: 10px;
 	box-shadow: 3px 2px 10px #333;
-/*	transform: translateX(2000px);
-*/	transition: all .5s ease;
-	opacity: 0;
-	
+	transition: all .2s ease;
+	opacity: 0;	
 }
 
 
-li:nth-child(odd) {
+a:nth-child(odd) li {
 	background-color: #FF866D;
 }
 
  
-li:hover {
-	transform: scale(1.1);
+a li:hover {
+	box-shadow: 10px 8px 10px #444;
+	border: 1px #b9d9e5 solid;
 }
 
 li h2 {
@@ -122,12 +125,11 @@ li h2 {
 }
 
 .searchmatch {
-	color: red;
+	text-decoration: underline;
+	color: blue;
 }
 
 .move {
-/*	animation: moveDiv .2s ease-out forwards;
-*/
 	transform: translateY(-190px);
 }
 
@@ -143,9 +145,11 @@ li h2 {
 @keyframes come-in {
 	from {
 		opacity: 0;
+		transform: translateY(2000px) rotateY(-90deg);
 
 	}
 	to {
 		opacity: 1;
+		transform: none;
 	}
 }
