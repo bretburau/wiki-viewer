@@ -15,10 +15,10 @@ function removeClass(className) {
 function search(e) {
 	e.preventDefault(); //stop page from reloading
 	var searchText = $("#search").val(); //grab text from input field
-	if(searchText == "") { 	
+	if(searchText === "") { 	
 		alert("Please enter something to lookup!"); //assure field isn't empty  
 		return;
-	};
+	}
 	form.className = "move"; //animate form up and fade header out
 	h1.className = "fadeout";
 	
@@ -44,7 +44,7 @@ function search(e) {
 
 	 			
 	 			newContent += newEntry; //add listing to total content
-	 		}; //end success
+	 		} //end success
 	 		document.getElementById("list").innerHTML = newContent; //add all content to the ul
 	 		var y=0;
  			function animateLoop () {           //  create a loop function
@@ -55,7 +55,7 @@ function search(e) {
 			      	if (y < document.getElementById("list").childNodes.length) {            //  if the counter < 10, call the loop function
 			        	animateLoop();             //  ..  again which will trigger another 
 			      	}                        
-			   	}, 50)
+			   	}, 50);
 			}
 			animateLoop();
  			
